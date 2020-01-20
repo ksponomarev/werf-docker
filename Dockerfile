@@ -4,7 +4,8 @@ ENV HELM_VERSION=v3.0.2
 ENV KUBECTL_VERSION=v1.17.0
 
 RUN set -ex;\
-    apk add curl git;\
+    apk add curl git bash;\
+    sed -i 's/ash/bash/g' /etc/passwd;\
     cd /tmp;\
     curl -L https://raw.githubusercontent.com/flant/multiwerf/master/get.sh | sh;\
     mv /tmp/multiwerf /usr/bin/multiwerf;\
