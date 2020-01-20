@@ -5,7 +5,7 @@ RUN set -ex;\
     apt update -qq;\
     apt install curl apt-transport-https -y;\
     curl -L https://raw.githubusercontent.com/flant/multiwerf/master/get.sh | bash;\
-    mv /multiwerf /usr/bin/multiwerf;\
+    mv /tmp/multiwerf /usr/bin/multiwerf;\
     type multiwerf && . $(multiwerf use 1.0 stable --as-file);\
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -;\
     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list;\
