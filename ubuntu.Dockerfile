@@ -14,4 +14,7 @@ RUN set -ex;\
     wget https://get.helm.sh/helm-v3.0.2-linux-amd64.tar.gz;\
     tar -zxvf helm-v3.0.2-linux-amd64.tar.gz;\
     mv linux-amd64/helm /usr/local/bin/helm;\
+    wget https://download.docker.com/linux/static/stable/x86_64/docker-19.03.5.tgz -O /tmp/docker-19.03.5.tgz;\
+    tar -xf docker-19.03.5.tgz;\
+    cp /tmp/docker/docker /usr/bin;\
     rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
