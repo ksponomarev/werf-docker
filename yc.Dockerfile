@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM docker:latest
 
 ENV HELM_VERSION=v3.0.2
 ENV KUBECTL_VERSION=v1.17.0
