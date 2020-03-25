@@ -1,6 +1,6 @@
 Dockerfiles for images with [werf tool](https://werf.io/)
 
-### Tags
+### Tags also includes
 
 #### latest
 
@@ -37,6 +37,12 @@ Based on `mcr.microsoft.com/azure-cli`.
 #### gcloud
 
 Based on `google/cloud-sdk:slim`.
+
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- [helm](https://helm.sh/)
+- [docker](https://docs.docker.com/install/linux/docker-ce/binaries/) **only binaries files**
+
+#### slim
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [helm](https://helm.sh/)
