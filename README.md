@@ -1,6 +1,6 @@
 Dockerfiles for images with [werf tool](https://werf.io/)
 
-### Tags also includes
+### Tags also include
 
 #### latest
 
@@ -9,7 +9,7 @@ Dockerfiles for images with [werf tool](https://werf.io/)
 - [helm](https://helm.sh/)
 - [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
 - [docker](https://docs.docker.com/install/linux/docker-ce/binaries/) **only binaries files**
-- docker-compose
+- [docker-compose](https://docs.docker.com/compose/install/)
 
 
 #### yandex
@@ -47,3 +47,4 @@ Based on `google/cloud-sdk:slim`.
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [helm](https://helm.sh/)
 - [docker](https://docs.docker.com/install/linux/docker-ce/binaries/) **only binaries files**
+- [docker-compose](https://docs.docker.com/compose/install/)
