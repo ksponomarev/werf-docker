@@ -4,7 +4,6 @@ ARG HELM=v3.1.0
 ARG WERF=1.1
 ARG WERF_VERSION=ea
 ARG DOCKER=19.03.8
-ARG DOCKER_COMPOSE=1.25.4
 
 RUN apt update -qq;\
     apt install curl apt-transport-https git -y wget apt-utils gnupg2 zip unzip ca-certificates;
@@ -23,11 +22,7 @@ RUN wget https://get.helm.sh/helm-${HELM}-linux-amd64.tar.gz;\
 
 RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER}.tgz -O docker-${DOCKER}.tgz;\
     tar -xf docker-${DOCKER}.tgz;\
-    mv docker/docker /usr/local/bin;\
-    curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-RUN curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash;\
-    mv /root/yandex-cloud/bin/* /usr/local/bin/
+    mv docker/docker /usr/local/bin;
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";\
     unzip awscliv2.zip; ./aws/install
