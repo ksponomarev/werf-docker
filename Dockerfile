@@ -1,6 +1,6 @@
 FROM ubuntu:bionic AS collector
 
-ARG HELM=v3.1.0
+ARG HELM=v3.1.2
 ARG WERF=1.1
 ARG WERF_VERSION=ea
 ARG DOCKER=19.03.8
@@ -26,15 +26,8 @@ RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER}
     mv docker/docker /usr/local/bin;\
     curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
-RUN curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash;\
-    mv /root/yandex-cloud/bin/* /usr/local/bin/
-
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";\
-    unzip awscliv2.zip; ./aws/install
-
 RUN chmod +x /usr/local/bin/*
 
 FROM ubuntu:bionic
 COPY --from=collector /usr/local/bin/ /usr/local/bin/
-COPY --from=collector /usr/local/aws-cli /usr/local/aws-cli
 RUN apt update -qq; apt install -y curl wget; rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
