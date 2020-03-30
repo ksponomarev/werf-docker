@@ -1,8 +1,19 @@
-Dockerfiles for images with [werf tool](https://werf.io/)
+Dockerfiles for images with [werf tool](https://werf.io/). Also the image has curl,wget.
 
 ### Tags also include
 
 #### latest
+
+Based on `ubuntu:bionic`.
+
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- [helm](https://helm.sh/)
+- [docker](https://docs.docker.com/install/linux/docker-ce/binaries/) **only binaries files**
+
+
+#### alpine
+
+Based on `alpine`
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [helm](https://helm.sh/)
