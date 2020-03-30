@@ -26,6 +26,6 @@ RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER}
 
 RUN chmod +x /usr/local/bin/*
 
-FROM ubuntu:bionic
+FROM alpine
 COPY --from=collector /usr/local/bin/ /usr/local/bin/
-RUN apt update -qq; apt install -y curl wget; rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
+RUN apk add --no-cache curl wget bash; sed -i 's/\/bin\/ash/\/bin\/bash/g' /etc/passwd;

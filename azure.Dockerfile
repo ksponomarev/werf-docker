@@ -4,7 +4,6 @@ ARG HELM=v3.1.0
 ARG WERF=1.1
 ARG WERF_VERSION=ea
 ARG DOCKER=19.03.8
-ARG DOCKER_COMPOSE=1.25.4
 
 RUN apt update -qq;\
     apt install curl apt-transport-https git -y wget apt-utils gnupg2 zip unzip ca-certificates;

@@ -7,7 +7,6 @@ Dockerfiles for images with [werf tool](https://werf.io/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [helm](https://helm.sh/)
 - [docker](https://docs.docker.com/install/linux/docker-ce/binaries/) **only binaries files**
-- [docker-compose](https://docs.docker.com/compose/install/)
 
 
 #### yandex
