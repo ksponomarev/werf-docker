@@ -1,5 +1,7 @@
 FROM ksponomarev/werf:latest as collector
 
+RUN apt update -qq; apt install zip unzip -y
+
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";\
     unzip awscliv2.zip; ./aws/install
 
