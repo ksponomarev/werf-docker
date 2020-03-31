@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master ]
 jobs:
-  build:
+  latest:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,3 +15,16 @@ jobs:
       run: docker build . --file Dockerfile --tag ksponomarev/werf:latest
     - name: Push the image to Docker hub
       run: docker push ksponomarev/werf:latest
+  aws:
+    needs: [latest]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker login
+      run: docker login -u ksponomarev -p "$TOKEN"
+      env:
+        TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+    - name: Build the Docker image
+      run: docker build . --file aws.Dockerfile --tag ksponomarev/werf:aws
+    - name: Push the image to Docker hub
+      run: docker push ksponomarev/werf:aws
