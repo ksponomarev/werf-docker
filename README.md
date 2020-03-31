@@ -1,3 +1,5 @@
+![Docker Image CI](https://github.com/ksponomarev/werf-docker-image/workflows/Docker%20Image%20CI/badge.svg)
+
 Dockerfiles for images with [werf tool](https://werf.io/). Also the image has curl,wget.
 
 ### Tags also include
