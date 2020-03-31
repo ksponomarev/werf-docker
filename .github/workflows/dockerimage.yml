@@ -9,3 +9,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ksponomarev/werf:latest
+    - name: Push the image to Docker hub
+      run: docker push ksponomarev/werf:latest
