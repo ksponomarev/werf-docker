@@ -7,4 +7,4 @@ RUN chmod +x /usr/local/bin/*
 
 FROM ubuntu:bionic
 COPY --from=collector /usr/local/bin/ /usr/local/bin/
-RUN apt update -qq; apt install -y curl wget; rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
+RUN apt update -qq; apt install -y curl wget git; rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
