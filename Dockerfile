@@ -2,7 +2,7 @@ FROM ubuntu:bionic AS collector
 
 ARG HELM=v3.1.2
 ARG WERF=1.1
-ARG WERF_VERSION=ea
+ARG WERF_VERSION=stable
 ARG DOCKER=19.03.8
 
 RUN apt update -qq;\
