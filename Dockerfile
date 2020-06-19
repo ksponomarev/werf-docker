@@ -1,6 +1,6 @@
 FROM ubuntu:bionic AS collector
 
-ARG HELM=v3.2.0
+ARG HELM=v3.2.4
 ARG WERF=1.1
 ARG WERF_VERSION=stable
 ARG DOCKER=19.03.8
