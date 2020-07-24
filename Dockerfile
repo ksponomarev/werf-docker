@@ -1,4 +1,4 @@
-FROM ubuntu:bionic AS collector
+FROM ubuntu:focal AS collector
 
 ARG HELM=v3.2.4
 ARG WERF=1.1
@@ -26,6 +26,6 @@ RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER}
 
 RUN chmod +x /usr/local/bin/*
 
-FROM ubuntu:bionic
+FROM ubuntu:focal
 COPY --from=collector /usr/local/bin/ /usr/local/bin/
 RUN apt update -qq; apt install -y curl wget git; rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
