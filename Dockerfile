@@ -1,12 +1,11 @@
 FROM ubuntu:focal AS collector
 
-ARG HELM=v3.2.4
 ARG WERF=1.1
 ARG WERF_VERSION=stable
-ARG DOCKER=19.03.8
+ARG DOCKER=19.03.12
 
 RUN apt update -qq;\
-    apt install curl apt-transport-https git -y wget apt-utils gnupg2 zip unzip ca-certificates;
+    apt install curl apt-transport-https git wget apt-utils gnupg2 zip unzip ca-certificates jq -y;
 
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl;\
     mv kubectl /usr/local/bin/;
@@ -16,7 +15,8 @@ RUN curl -L https://raw.githubusercontent.com/flant/multiwerf/master/get.sh | ba
     mv multiwerf /usr/local/bin/multiwerf;\
     type multiwerf && . $(multiwerf use ${WERF} ${WERF_VERSION} --as-file);
 
-RUN wget https://get.helm.sh/helm-${HELM}-linux-amd64.tar.gz;\
+RUN HELM=$(curl -s https://api.github.com/repos/helm/helm/releases | jq -r '.[].tag_name' | grep v3| grep -v rc | head -1);\
+    wget https://get.helm.sh/helm-${HELM}-linux-amd64.tar.gz;\
     tar -zxf helm-${HELM}-linux-amd64.tar.gz;\
     mv linux-amd64/helm /usr/local/bin/helm;
 
