@@ -24,8 +24,18 @@ RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER}
     tar -xf docker-${DOCKER}.tgz;\
     mv docker/docker /usr/local/bin;
 
+RUN curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash;\
+    mv /root/yandex-cloud/bin/* /usr/local/bin/
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";\
+    unzip awscliv2.zip; ./aws/install
+
+RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp;\
+    mv /tmp/eksctl /usr/local/bin
+
 RUN chmod +x /usr/local/bin/*
 
 FROM ubuntu:focal
+COPY --from=collector /usr/local/aws-cli /usr/local/aws-cli
 COPY --from=collector /usr/local/bin/ /usr/local/bin/
 RUN apt update -qq; apt install -y curl wget git; rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*

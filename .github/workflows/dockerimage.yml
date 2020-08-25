@@ -2,8 +2,10 @@ name: Docker Image CI
 on:
   push:
     branches: [ master ]
+  schedule:
+    - cron: '00 00 1/14 * *'
 jobs:
-  latest:
+  Builder:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -12,71 +14,6 @@ jobs:
       env:
         TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ksponomarev/werf:latest
+      run: docker build . --file Dockerfile --tag ksponomarev/builder:latest
     - name: Push the image to Docker hub
-      run: docker push ksponomarev/werf:latest
-  aws:
-    needs: [latest]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Docker login
-      run: docker login -u ksponomarev -p "$TOKEN"
-      env:
-        TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-    - name: Build the Docker image
-      run: docker build . --file aws.Dockerfile --tag ksponomarev/werf:aws
-    - name: Push the image to Docker hub
-      run: docker push ksponomarev/werf:aws
-  yandex:
-    needs: [latest]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Docker login
-      run: docker login -u ksponomarev -p "$TOKEN"
-      env:
-        TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-    - name: Build the Docker image
-      run: docker build . --file yc.Dockerfile --tag ksponomarev/werf:yandex
-    - name: Push the image to Docker hub
-      run: docker push ksponomarev/werf:yandex
-  azure:
-    needs: [latest]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Docker login
-      run: docker login -u ksponomarev -p "$TOKEN"
-      env:
-        TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-    - name: Build the Docker image
-      run: docker build . --file azure.Dockerfile --tag ksponomarev/werf:azure
-    - name: Push the image to Docker hub
-      run: docker push ksponomarev/werf:azure
-  alpine:
-    needs: [latest]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Docker login
-      run: docker login -u ksponomarev -p "$TOKEN"
-      env:
-        TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-    - name: Build the Docker image
-      run: docker build . --file alpine.Dockerfile --tag ksponomarev/werf:alpine
-    - name: Push the image to Docker hub
-      run: docker push ksponomarev/werf:alpine
-  gcloud:
-    needs: [latest]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Docker login
-      run: docker login -u ksponomarev -p "$TOKEN"
-      env:
-        TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-    - name: Build the Docker image
-      run: docker build . --file gcloud.Dockerfile --tag ksponomarev/werf:gcloud
-    - name: Push the image to Docker hub
-      run: docker push ksponomarev/werf:gcloud
+      run: docker push ksponomarev/builder:latest
